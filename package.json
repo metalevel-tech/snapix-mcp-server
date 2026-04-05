@@ -1,0 +1,55 @@
+{
+  "name": "@metalevel/snapix-mcp-server",
+  "version": "0.1.0",
+  "mcpBaseUrl": "https://www.snapix.space",
+  "description": "MCP server for SnapiX - image optimization, conversion, generation, and gallery management via the Model Context Protocol",
+  "type": "module",
+  "license": "MIT",
+  "author": "pa4080",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pa4080/snapix-mcp-server"
+  },
+  "homepage": "https://snapix.metalevel.tech/docs/mcp",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "snapix",
+    "image-optimization",
+    "image-conversion",
+    "ai",
+    "llm"
+  ],
+  "bin": {
+    "snapix-mcp-server": "./dist/index.js"
+  },
+  "main": "./dist/server.js",
+  "types": "./dist/server.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/server.js",
+      "types": "./dist/server.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js",
+    "prepublishOnly": "pnpm build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
