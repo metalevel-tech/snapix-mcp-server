@@ -22,6 +22,7 @@ import { type CreateServerOptions } from "./types.js";
 export function createSnapixMcpServer({
   apiKey,
   baseUrl = APP_MCP_BASE_URL,
+  transport = "stdio",
 }: CreateServerOptions): McpServer {
   const server = new McpServer({
     name: APP_MCP_PACKAGE_NAME,
@@ -31,8 +32,8 @@ export function createSnapixMcpServer({
 
   // Register tools
   registerConvertTool(server, client);
-  registerUploadImageTool(server, client);
-  registerGenerateImageTool(server, client);
+  registerUploadImageTool(server, client, transport);
+  registerGenerateImageTool(server, client, transport);
   registerListImagesTool(server, client);
   registerGetImageTool(server, client);
   registerUpdateImageTool(server, client);
@@ -63,7 +64,7 @@ export async function handleStatelessRequest(
     enableJsonResponse: true,
   });
 
-  const server = createSnapixMcpServer(options);
+  const server = createSnapixMcpServer({ ...options, transport: "http" });
   await server.connect(transport);
 
   return transport.handleRequest(request);

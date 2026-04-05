@@ -3,8 +3,11 @@ export interface SnapixClientConfig {
   apiKey: string;
 }
 
+export type TransportType = "stdio" | "http";
+
 export type CreateServerOptions = Omit<SnapixClientConfig, "baseUrl"> & {
   baseUrl?: string;
+  transport?: TransportType;
 };
 
 export interface ListImagesParams {
@@ -14,32 +17,28 @@ export interface ListImagesParams {
   bucketKey?: string;
 }
 
-export interface UploadImageParams {
+export interface ImageSourceParams {
   imageUrl?: string;
   imageBase64?: string;
+  imageFilePath?: string;
   imageContentType?: string;
+  contentType?: string;
   name?: string;
   description?: string;
-  contentType?: string;
   ratio?: number;
   resizeOptions?: Record<string, unknown>[];
   formatOptions?: { format: string; options?: Record<string, unknown> }[];
   galleries?: string[];
   bucketKey?: string;
+}
+
+export interface UploadImageParams extends ImageSourceParams {
   prefix?: string;
   storageKeyHandling?: "unique" | "default";
 }
 
-export interface GenerateImageParams {
+export interface GenerateImageParams extends ImageSourceParams {
   promptText: string;
-  imageUrl?: string;
-  name?: string;
-  description?: string;
-  ratio?: number;
-  resizeOptions?: Record<string, unknown>[];
-  formatOptions?: { format: string; options?: Record<string, unknown> }[];
-  galleries?: string[];
-  bucketKey?: string;
   aiConfig?: Record<string, unknown>;
 }
 

@@ -3,12 +3,16 @@ import { SnapixApiError } from "./errors.js";
 import {
   type CreateGalleryParams,
   type GenerateImageParams,
+  type ImageSourceParams,
   type ListImagesParams,
   type SnapixClientConfig,
   type UpdateGalleryParams,
   type UpdateImageParams,
   type UploadImageParams,
 } from "./types.js";
+
+import { readFile } from "node:fs/promises";
+import { basename, extname } from "node:path";
 
 export class SnapixClient {
   private baseUrl: string;
@@ -74,6 +78,43 @@ export class SnapixClient {
    * Image endpoints
    */
 
+  private async handleImageUploadParams(
+    params: ImageSourceParams,
+    formData: FormData
+  ): Promise<FormData> {
+    if (params.imageFilePath) {
+      const buffer = await readFile(params.imageFilePath);
+      const ext = extname(params.imageFilePath).slice(1).toLowerCase();
+      const mimeMap: Record<string, string> = {
+        jpg: "image/jpeg",
+        jpeg: "image/jpeg",
+        png: "image/png",
+        webp: "image/webp",
+        avif: "image/avif",
+        gif: "image/gif",
+        svg: "image/svg+xml",
+      };
+      const mimeType =
+        params.imageContentType ?? params.contentType ?? mimeMap[ext] ?? "application/octet-stream";
+      const blob = new Blob([buffer], { type: mimeType });
+      const filename = params.name
+        ? `${params.name}.${ext || "bin"}`
+        : basename(params.imageFilePath);
+      formData.append("image", blob, filename);
+    } else if (params.imageBase64) {
+      const mimeType = params.imageContentType ?? params.contentType ?? "application/octet-stream";
+      const buffer = Buffer.from(params.imageBase64, "base64");
+      const blob = new Blob([buffer], { type: mimeType });
+      const ext = mimeType.split("/")[1] ?? "bin";
+      const filename = params.name ? `${params.name}.${ext}` : `upload.${ext}`;
+      formData.append("image", blob, filename);
+    } else if (params.imageUrl) {
+      formData.append("url", params.imageUrl);
+    }
+
+    return formData;
+  }
+
   async uploadImage(params: UploadImageParams): Promise<unknown> {
     const formData = this.buildFormData({
       name: params.name,
@@ -90,16 +131,7 @@ export class SnapixClient {
       storageKeyHandling: params.storageKeyHandling,
     });
 
-    if (params.imageBase64) {
-      const mimeType = params.imageContentType ?? params.contentType ?? "application/octet-stream";
-      const buffer = Buffer.from(params.imageBase64, "base64");
-      const blob = new Blob([buffer], { type: mimeType });
-      const ext = mimeType.split("/")[1] ?? "bin";
-      const filename = params.name ? `${params.name}.${ext}` : `upload.${ext}`;
-      formData.append("image", blob, filename);
-    } else if (params.imageUrl) {
-      formData.append("url", params.imageUrl);
-    }
+    await this.handleImageUploadParams(params, formData);
 
     const response = await fetch(`${this.baseUrl}/${API_URI_IMAGES}`, {
       method: "POST",
@@ -182,7 +214,6 @@ export class SnapixClient {
 
   async generateImage(params: GenerateImageParams): Promise<unknown> {
     const formData = this.buildFormData({
-      url: params.imageUrl,
       prompt: params.promptText,
       name: params.name,
       description: params.description,
@@ -195,6 +226,8 @@ export class SnapixClient {
       bucketKey: params.bucketKey,
       aiConfig: params.aiConfig !== undefined ? JSON.stringify(params.aiConfig) : undefined,
     });
+
+    await this.handleImageUploadParams(params, formData);
 
     const response = await fetch(`${this.baseUrl}/${API_URI_GENERATE}`, {
       method: "POST",

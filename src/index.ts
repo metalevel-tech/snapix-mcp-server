@@ -13,6 +13,6 @@ if (!apiKey) {
   process.exit(1);
 }
 
-const server = createSnapixMcpServer({ apiKey });
+const server = createSnapixMcpServer({ apiKey, transport: "stdio" });
 const transport = new StdioServerTransport();
 await server.connect(transport);

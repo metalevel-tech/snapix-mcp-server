@@ -50,48 +50,6 @@ Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_
 }
 ```
 
-## Quick Start — Remote (HTTP)
-
-For clients that support Streamable HTTP transport, point to the hosted endpoint:
-
-```txt
-https://www.snapix.space/api/mcp
-```
-
-Pass your API key via the `Authorization` header:
-
-```ini
-Authorization: Bearer <your-api-key>
-```
-
-The remote endpoint operates in stateless mode — no session persistence between requests.
-
-### VS Code (Copilot)
-
-Add to `.vscode/mcp.json`:
-
-```json
-{
-  "inputs": [
-    {
-      "id": "SNAPIX_API_KEY",
-      "type": "promptString",
-      "description": "SnapiX API key",
-      "password": true
-    }
-  ],
-  "servers": {
-    "snapix": {
-      "type": "http",
-      "url": "https://www.snapix.space/api/mcp",
-      "headers": {
-        "Authorization": "Bearer ${input:SNAPIX_API_KEY}"
-      }
-    }
-  }
-}
-```
-
 ## Environment Variables
 
 | Variable | Required | Default | Description |
