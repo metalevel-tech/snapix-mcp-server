@@ -1,6 +1,6 @@
 # @metalevel/snapix-mcp-server
 
-MCP server for [SnapiX](https://www.snapix.space) — image optimization, conversion, AI generation, and gallery management via the [Model Context Protocol](https://modelcontextprotocol.io).
+MCP server for [SnapiX](https://www.snapix.space) — image optimization, conversion, AI generation, and gallery management via the [Model Context Protocol](https://modelcontextprotocol.io). Get a free [API key](https://www.snapix.space/user/api-keys) and start using it with your AI clients today, no credits required!
 
 ## Quick Start — Local (stdio)
 
