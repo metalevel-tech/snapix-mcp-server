@@ -1,6 +1,6 @@
 {
   "name": "@metalevel/snapix-mcp-server",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "mcpBaseUrl": "https://www.snapix.space",
   "description": "MCP server for SnapiX - image optimization, conversion, generation, and gallery management via the Model Context Protocol",
   "type": "module",
@@ -8,7 +8,7 @@
   "author": "pa4080",
   "repository": {
     "type": "git",
-    "url": "https://github.com/metalevel/snapix-mcp-server"
+    "url": "https://github.com/metalevel-tech/snapix-mcp-server"
   },
   "homepage": "https://www.snapix.space/docs/mcp",
   "keywords": [
