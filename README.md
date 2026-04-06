@@ -21,7 +21,7 @@ Add to `.vscode/mcp.json`:
     }
   ],
   "servers": {
-    "snapix": {
+    "metalevel/snapix-mcp": {
       "command": "npx",
       "args": ["-y", "@metalevel/snapix-mcp-server"],
       "env": {
@@ -39,7 +39,7 @@ Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_
 ```json
 {
   "mcpServers": {
-    "snapix": {
+    "metalevel/snapix-mcp": {
       "command": "npx",
       "args": ["-y", "@metalevel/snapix-mcp-server"],
       "env": {
