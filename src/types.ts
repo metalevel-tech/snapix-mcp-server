@@ -1,6 +1,7 @@
 export interface SnapixClientConfig {
   baseUrl: string;
   apiKey: string;
+  bucketKey?: string;
 }
 
 export type TransportType = "stdio" | "http";

@@ -17,10 +17,12 @@ import { basename, extname } from "node:path";
 export class SnapixClient {
   private baseUrl: string;
   private apiKey: string;
+  private bucketKey?: string;
 
   constructor(config: SnapixClientConfig) {
     this.baseUrl = config.baseUrl.replace(/\/$/, "");
     this.apiKey = config.apiKey;
+    this.bucketKey = config.bucketKey;
   }
 
   private get headers(): Record<string, string> {
@@ -126,7 +128,7 @@ export class SnapixClient {
       formatOptions:
         params.formatOptions !== undefined ? JSON.stringify(params.formatOptions) : undefined,
       galleries: params.galleries !== undefined ? JSON.stringify(params.galleries) : undefined,
-      bucketKey: params.bucketKey,
+      bucketKey: params.bucketKey ?? this.bucketKey,
       prefix: params.prefix,
       storageKeyHandling: params.storageKeyHandling,
     });
@@ -154,8 +156,9 @@ export class SnapixClient {
     if (params?.sort) {
       searchParams.set("sort", params.sort);
     }
-    if (params?.bucketKey) {
-      searchParams.set("bucketKey", params.bucketKey);
+    const bucketKey = params?.bucketKey ?? this.bucketKey;
+    if (bucketKey) {
+      searchParams.set("bucketKey", bucketKey);
     }
 
     const query = searchParams.toString();
@@ -223,7 +226,7 @@ export class SnapixClient {
       formatOptions:
         params.formatOptions !== undefined ? JSON.stringify(params.formatOptions) : undefined,
       galleries: params.galleries !== undefined ? JSON.stringify(params.galleries) : undefined,
-      bucketKey: params.bucketKey,
+      bucketKey: params.bucketKey ?? this.bucketKey,
       aiConfig: params.aiConfig !== undefined ? JSON.stringify(params.aiConfig) : undefined,
     });
 
@@ -246,7 +249,7 @@ export class SnapixClient {
     const response = await fetch(`${this.baseUrl}/${API_URI_GALLERIES}`, {
       method: "POST",
       headers: { ...this.headers, "Content-Type": "application/json" },
-      body: JSON.stringify(params),
+      body: JSON.stringify({ ...params, bucketKey: params.bucketKey ?? this.bucketKey }),
     });
 
     return this.handleResponse(response);

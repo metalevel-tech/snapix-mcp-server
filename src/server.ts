@@ -23,13 +23,14 @@ import { type CreateServerOptions } from "./types.js";
 export function createSnapixMcpServer({
   apiKey,
   baseUrl = APP_MCP_BASE_URL,
+  bucketKey,
   transport = "stdio",
 }: CreateServerOptions): McpServer {
   const server = new McpServer({
     name: APP_MCP_PACKAGE_NAME,
     version: APP_MCP_PACKAGE_VERSION,
   });
-  const client = new SnapixClient({ baseUrl, apiKey });
+  const client = new SnapixClient({ baseUrl, apiKey, bucketKey });
 
   // Register tools
   registerConvertTool(server, client);

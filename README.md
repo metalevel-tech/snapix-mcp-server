@@ -18,6 +18,12 @@ Add to `.vscode/mcp.json`:
       "type": "promptString",
       "description": "SnapiX API key",
       "password": true
+    },
+    {
+      "id": "SNAPIX_BUCKET_KEY",
+      "type": "promptString",
+      "description": "Default bucket key for SnapiX uploads and generates (optional)",
+      "password": false
     }
   ],
   "servers": {
@@ -25,7 +31,8 @@ Add to `.vscode/mcp.json`:
       "command": "npx",
       "args": ["-y", "@metalevel/snapix-mcp-server"],
       "env": {
-        "SNAPIX_API_KEY": "${input:SNAPIX_API_KEY}"
+        "SNAPIX_API_KEY": "${input:SNAPIX_API_KEY}",
+        "SNAPIX_BUCKET_KEY": "${input:SNAPIX_BUCKET_KEY}" // optional
       }
     }
   }
@@ -43,7 +50,8 @@ Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_
       "command": "npx",
       "args": ["-y", "@metalevel/snapix-mcp-server"],
       "env": {
-        "SNAPIX_API_KEY": "your-api-key-here"
+        "SNAPIX_API_KEY": "your-api-key-here",
+        "SNAPIX_BUCKET_KEY": "your-optional-custom-bucket-key"
       }
     }
   }
@@ -55,6 +63,7 @@ Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_
 | Variable | Required | Default | Description |
 | --- | --- | --- | --- |
 | `SNAPIX_API_KEY` | Yes | — | Your SnapiX API key |
+| `SNAPIX_BUCKET_KEY` | No | primary bucket | Default storage bucket for uploads, generates, and gallery creation |
 
 ## Available Tools
 
@@ -106,6 +115,7 @@ import { createSnapixMcpServer } from "@metalevel/snapix-mcp-server";
 const server = createSnapixMcpServer({
   baseUrl: "https://www.snapix.space",
   apiKey: process.env.SNAPIX_API_KEY!,
+  bucketKey: process.env.SNAPIX_BUCKET_KEY, // optional
 });
 ```
 

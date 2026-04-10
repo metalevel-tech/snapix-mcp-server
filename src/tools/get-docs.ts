@@ -9,12 +9,12 @@ export function registerGetDocsTool(server: McpServer): void {
     {
       title: "Fetch SnapiX documentation",
       description:
-        "Fetch SnapiX documentation as Markdown. Use 'sdk' for the SDK integration guide, 'api' for the REST API reference, 'mcp' for MCP server setup.",
+        "Fetch SnapiX developer documentation as Markdown. Available sections: 'sdk' = TypeScript SDK integration guide, 'api' = REST API reference, 'mcp' = MCP server setup guide. 'about' = about the Snapix application. Only these four slugs are supported.",
       inputSchema: {
         slug: z
-          .enum(["sdk", "api", "mcp"])
+          .enum(["sdk", "api", "mcp", "about"])
           .describe(
-            "Documentation section to fetch. 'sdk' = TypeScript SDK guide, 'api' = REST API reference, 'mcp' = MCP server setup guide."
+            "Documentation section to fetch. 'sdk' = TypeScript SDK guide, 'api' = REST API reference, 'mcp' = MCP server setup guide, 'about' = about the Snapix application."
           ),
       },
     },
