@@ -10,6 +10,7 @@ import { registerCreateGalleryTool } from "./tools/create-gallery.js";
 import { registerDeleteGalleryTool } from "./tools/delete-gallery.js";
 import { registerDeleteImageTool } from "./tools/delete-image.js";
 import { registerGenerateImageTool } from "./tools/generate.js";
+import { registerGetDocsTool } from "./tools/get-docs.js";
 import { registerGetGalleryTool } from "./tools/get-gallery.js";
 import { registerGetImageTool } from "./tools/get-image.js";
 import { registerListGalleriesTool } from "./tools/list-galleries.js";
@@ -32,6 +33,7 @@ export function createSnapixMcpServer({
 
   // Register tools
   registerConvertTool(server, client);
+  registerGetDocsTool(server);
   registerUploadImageTool(server, client, transport);
   registerGenerateImageTool(server, client, transport);
   registerListImagesTool(server, client);

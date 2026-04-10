@@ -60,6 +60,7 @@ Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_
 
 | Tool | Description | Credits |
 | --- | --- | --- |
+| `snapix_get_docs` | Fetch SnapiX documentation (SDK, API, or MCP reference) | Free |
 | `snapix_convert_image` | Guidance tool — explains how to convert images using the upload tool | Free |
 | `snapix_upload_image` | Upload an image from URL, optionally convert format and resize | 1+ |
 | `snapix_generate_image` | Generate an image from a text prompt (Gemini AI)* | 40+ |

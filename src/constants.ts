@@ -11,3 +11,4 @@ export const APP_MCP_PACKAGE_NAME = packageJson.name;
 export const API_URI_IMAGES = "api/v1/images";
 export const API_URI_GENERATE = "api/v1/generate";
 export const API_URI_GALLERIES = "api/v1/galleries";
+export const API_URI_DOCS = "api/docs";
