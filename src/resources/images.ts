@@ -3,7 +3,7 @@ import { type McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/serv
 import { type SnapixClient } from "../client.js";
 
 export function registerImageResources(server: McpServer, client: SnapixClient): void {
-  server.resource(
+  server.registerResource(
     "image-list",
     "snapix://images",
     {
@@ -25,7 +25,7 @@ export function registerImageResources(server: McpServer, client: SnapixClient):
     }
   );
 
-  server.resource(
+  server.registerResource(
     "image-detail",
     new ResourceTemplate("snapix://images/{imageId}", { list: undefined }),
     {

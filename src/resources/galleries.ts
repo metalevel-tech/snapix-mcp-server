@@ -3,7 +3,7 @@ import { type McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/serv
 import { type SnapixClient } from "../client.js";
 
 export function registerGalleryResources(server: McpServer, client: SnapixClient): void {
-  server.resource(
+  server.registerResource(
     "gallery-list",
     "snapix://galleries",
     {
@@ -26,7 +26,7 @@ export function registerGalleryResources(server: McpServer, client: SnapixClient
     }
   );
 
-  server.resource(
+  server.registerResource(
     "gallery-detail",
     new ResourceTemplate("snapix://galleries/{galleryId}", { list: undefined }),
     {
@@ -36,6 +36,28 @@ export function registerGalleryResources(server: McpServer, client: SnapixClient
     async (uri, variables) => {
       const galleryId = String(variables.galleryId);
       const data = await client.getGallery(galleryId);
+
+      return {
+        contents: [
+          {
+            uri: uri.href,
+            mimeType: "application/json",
+            text: JSON.stringify(data, null, 2),
+          },
+        ],
+      };
+    }
+  );
+
+  server.registerResource(
+    "ungrouped-images",
+    "snapix://images/ungrouped",
+    {
+      description: "All images that are not assigned to any gallery, with metadata and CDN URLs",
+      mimeType: "application/json",
+    },
+    async (uri) => {
+      const data = await client.getImagesWithoutGallery();
 
       return {
         contents: [

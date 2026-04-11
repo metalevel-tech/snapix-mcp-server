@@ -14,6 +14,7 @@ import { registerGenerateImageTool } from "./tools/generate.js";
 import { registerGetDocsTool } from "./tools/get-docs.js";
 import { registerGetGalleryTool } from "./tools/get-gallery.js";
 import { registerGetImageTool } from "./tools/get-image.js";
+import { registerGetUngroupedImagesTool } from "./tools/get-ungrouped-images.js";
 import { registerListGalleriesTool } from "./tools/list-galleries.js";
 import { registerListImagesTool } from "./tools/list-images.js";
 import { registerUpdateGalleryTool } from "./tools/update-gallery.js";
@@ -45,6 +46,7 @@ export function createSnapixMcpServer({
   registerCreateGalleryTool(server, client);
   registerListGalleriesTool(server, client);
   registerGetGalleryTool(server, client);
+  registerGetUngroupedImagesTool(server, client);
   registerUpdateGalleryTool(server, client);
   registerDeleteGalleryTool(server, client);
 

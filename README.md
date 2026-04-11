@@ -80,6 +80,7 @@ Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_
 | `snapix_create_gallery` | Create a new gallery, optionally with existing images | Free |
 | `snapix_list_galleries` | List all galleries | Free |
 | `snapix_get_gallery` | Get gallery details with all images | Free |
+| `snapix_get_ungrouped_images` | Get all images not assigned to any gallery | Free |
 | `snapix_update_gallery` | Update gallery name or visibility | Free |
 | `snapix_delete_gallery` | Delete a gallery, optionally with all images | Free |
 
@@ -93,6 +94,7 @@ MCP Resources provide passive context that AI clients can pre-load without makin
 | --- | --- |
 | `snapix://galleries` | All galleries (name, id, visibility, image count) |
 | `snapix://galleries/{galleryId}` | Gallery details with all images and CDN URLs |
+| `snapix://images/ungrouped` | All images not assigned to any gallery |
 | `snapix://images` | Recent images (first page) with metadata and CDN URLs |
 | `snapix://images/{imageId}` | Full image metadata, variants, dimensions, and CDN URLs |
 

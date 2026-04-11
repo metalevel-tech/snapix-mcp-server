@@ -273,6 +273,18 @@ export class SnapixClient {
     return this.handleResponse(response);
   }
 
+  async getImagesWithoutGallery(bucketKey?: string): Promise<unknown> {
+    const searchParams = new URLSearchParams();
+    if (bucketKey) {
+      searchParams.set("bucketKey", bucketKey);
+    }
+    const query = searchParams.toString();
+    const url = `${this.baseUrl}/${API_URI_GALLERIES}/ungrouped${query ? `?${query}` : ""}`;
+    const response = await fetch(url, { method: "GET", headers: this.headers });
+
+    return this.handleResponse(response);
+  }
+
   async updateGallery(galleryId: string, params: UpdateGalleryParams): Promise<unknown> {
     const response = await fetch(`${this.baseUrl}/${API_URI_GALLERIES}/${galleryId}`, {
       method: "PATCH",
