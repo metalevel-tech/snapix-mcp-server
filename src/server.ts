@@ -3,6 +3,7 @@ import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/
 
 import { SnapixClient } from "./client.js";
 import { APP_MCP_BASE_URL, APP_MCP_PACKAGE_NAME, APP_MCP_PACKAGE_VERSION } from "./constants.js";
+import { registerSdkCoreSetupPrompt } from "./prompts/sdk-core-setup.js";
 import { registerGalleryResources } from "./resources/galleries.js";
 import { registerImageResources } from "./resources/images.js";
 import { registerConvertTool } from "./tools/convert.js";
@@ -50,6 +51,9 @@ export function createSnapixMcpServer({
   // Register resources
   registerGalleryResources(server, client);
   registerImageResources(server, client);
+
+  // Register prompts
+  registerSdkCoreSetupPrompt(server);
 
   return server;
 }

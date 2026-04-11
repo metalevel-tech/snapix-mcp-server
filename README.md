@@ -96,6 +96,14 @@ MCP Resources provide passive context that AI clients can pre-load without makin
 | `snapix://images` | Recent images (first page) with metadata and CDN URLs |
 | `snapix://images/{imageId}` | Full image metadata, variants, dimensions, and CDN URLs |
 
+## Prompts
+
+MCP Prompts are interactive workflow templates that AI clients can invoke on demand. Clients that support the MCP prompts capability (VS Code Copilot, Claude, and others) expose them as slash commands or selectable actions in the chat interface.
+
+| Prompt | Description |
+| --- | --- |
+| `snapix_setup_sdk_core` | Guided setup of `@metalevel/snapix-sdk-core`: reads live docs, installs the package with the detected package manager, and appends `SNAPIX_*` environment variables to the correct `.env` file |
+
 ## Rate Limiting
 
 The MCP server respects the same rate limits as the REST API. When a rate limit is hit (HTTP 429), the server returns an MCP error with a retryable flag, signaling to the AI client that it should wait and retry the request.
