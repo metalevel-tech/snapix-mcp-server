@@ -1,6 +1,8 @@
 # @metalevel/snapix-mcp-server
 
-MCP server for [SnapiX](https://www.snapix.space) — image optimization, conversion, AI generation, and gallery management via the [Model Context Protocol](https://modelcontextprotocol.io). Get a free [API key](https://www.snapix.space/user/api-keys) and start using it with your AI clients today, no credits required!
+MCP server for [SnapiX](https://www.snapix.space) - image optimization, conversion, AI generation, and gallery management via the [Model Context Protocol](https://modelcontextprotocol.io). Get a free [API key](https://www.snapix.space/user/api-keys) and start using it with your AI clients today, no credits required!
+
+Built on [`@metalevel/snapix-sdk-core`](https://www.npmjs.com/package/@metalevel/snapix-sdk-core) - the official typed TypeScript SDK for the SnapiX REST API.
 
 ## Quick Start — Local (stdio)
 
@@ -64,6 +66,7 @@ Add to your Claude Desktop config (`~/Library/Application Support/Claude/claude_
 | --- | --- | --- | --- |
 | `SNAPIX_API_KEY` | Yes | — | Your SnapiX API key |
 | `SNAPIX_BUCKET_KEY` | No | primary bucket | Default storage bucket for uploads, generates, and gallery creation |
+| `SNAPIX_LOG_LEVEL` | No | `warn` | SDK log verbosity: `debug` \| `info` \| `warn` \| `error` \| `silent` |
 
 ## Available Tools
 

@@ -1,9 +1,9 @@
 import { type McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 
-import { type SnapixClient } from "../client.js";
+import { type GenerateImageParams, type SnapixClient } from "@metalevel/snapix-sdk-core";
 import { handleToolError } from "../errors.js";
-import { type GenerateImageParams, type TransportType } from "../types.js";
+import { type TransportType } from "../types.js";
 
 const sharedFields = {
   promptText: z.string().describe("Text prompt describing the image to generate"),

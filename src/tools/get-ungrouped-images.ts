@@ -1,7 +1,7 @@
 import { type McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 
-import { type SnapixClient } from "../../../snapix-mcp-server/src/client.js";
+import { type SnapixClient } from "@metalevel/snapix-sdk-core";
 import { handleToolError } from "../errors.js";
 
 export function registerGetUngroupedImagesTool(server: McpServer, client: SnapixClient): void {
@@ -22,7 +22,7 @@ export function registerGetUngroupedImagesTool(server: McpServer, client: Snapix
     },
     async (params) => {
       try {
-        const result = await client.getImagesWithoutGallery(params.bucketKey);
+        const result = await client.getImagesWithoutGallery({ bucketKey: params.bucketKey });
 
         return {
           content: [{ type: "text" as const, text: JSON.stringify(result, null, 2) }],

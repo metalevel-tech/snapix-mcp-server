@@ -1,9 +1,10 @@
 import { type McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 
-import { API_URI_DOCS, APP_MCP_BASE_URL } from "../constants.js";
+import { type SnapixClient } from "@metalevel/snapix-sdk-core";
+import { handleToolError } from "../errors.js";
 
-export function registerGetDocsTool(server: McpServer): void {
+export function registerGetDocsTool(server: McpServer, client: SnapixClient): void {
   server.registerTool(
     "snapix_get_docs",
     {
@@ -20,22 +21,7 @@ export function registerGetDocsTool(server: McpServer): void {
     },
     async ({ slug }) => {
       try {
-        const url = `${APP_MCP_BASE_URL}/${API_URI_DOCS}/${slug}?format=md`;
-        const response = await fetch(url);
-
-        if (!response.ok) {
-          return {
-            content: [
-              {
-                type: "text" as const,
-                text: `Failed to fetch documentation for '${slug}': HTTP ${response.status}`,
-              },
-            ],
-            isError: true,
-          };
-        }
-
-        const markdown = await response.text();
+        const markdown = await client.getDocs(slug);
 
         return {
           content: [
@@ -46,12 +32,7 @@ export function registerGetDocsTool(server: McpServer): void {
           ],
         };
       } catch (error) {
-        const message = error instanceof Error ? error.message : "An unexpected error occurred.";
-
-        return {
-          content: [{ type: "text" as const, text: message }],
-          isError: true,
-        };
+        return handleToolError(error);
       }
     }
   );

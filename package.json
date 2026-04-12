@@ -1,6 +1,6 @@
 {
   "name": "@metalevel/snapix-mcp-server",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "mcpBaseUrl": "https://www.snapix.space",
   "description": "MCP server for SnapiX - image optimization, conversion, generation, and gallery management via the Model Context Protocol",
   "type": "module",
@@ -43,6 +43,7 @@
     "prepublishOnly": "pnpm build"
   },
   "dependencies": {
+    "@metalevel/snapix-sdk-core": "workspace:^",
     "@modelcontextprotocol/sdk": "^1.29.0",
     "zod": "^4.3.6"
   },

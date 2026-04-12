@@ -1,6 +1,6 @@
 import { type McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
-import { type SnapixClient } from "../client.js";
+import { type SnapixClient } from "@metalevel/snapix-sdk-core";
 
 export function registerConvertTool(server: McpServer, _client: SnapixClient): void {
   server.registerTool(

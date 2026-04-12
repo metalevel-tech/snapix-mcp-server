@@ -1,9 +1,9 @@
 import { type McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 
-import { type SnapixClient } from "../client.js";
+import { type SnapixClient, type UploadImageParams } from "@metalevel/snapix-sdk-core";
 import { handleToolError } from "../errors.js";
-import { type TransportType, type UploadImageParams } from "../types.js";
+import { type TransportType } from "../types.js";
 
 const sharedFields = {
   contentType: z
