@@ -1,6 +1,6 @@
 {
   "name": "@metalevel/snapix-mcp-server",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "mcpBaseUrl": "https://www.snapix.space",
   "description": "MCP server for SnapiX - image optimization, conversion, generation, and gallery management via the Model Context Protocol",
   "type": "module",
