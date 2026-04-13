@@ -7,7 +7,11 @@ export function handleToolError(error: unknown): {
 } {
   if (error instanceof SnapixApiError) {
     const retryable = error.isRetryable;
-    const message = error.message;
+    let message = error.message;
+
+    if (error.status === 403) {
+      message = "Access denied: this API key lacks the required permission for this operation.";
+    }
 
     return {
       content: [{ type: "text" as const, text: message }],
