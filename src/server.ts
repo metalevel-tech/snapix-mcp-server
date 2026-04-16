@@ -1,7 +1,7 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
 
-import { SnapixClient } from "@metalevel/snapix-sdk-core";
+import { SnapixClientServer } from "@metalevel/snapix-sdk-core";
 import { APP_MCP_BASE_URL, APP_MCP_PACKAGE_NAME, APP_MCP_PACKAGE_VERSION } from "./constants.js";
 import { registerSdkCoreSetupPrompt } from "./prompts/sdk-core-setup.js";
 import { registerGalleryResources } from "./resources/galleries.js";
@@ -33,7 +33,7 @@ export function createSnapixMcpServer({
     name: APP_MCP_PACKAGE_NAME,
     version: APP_MCP_PACKAGE_VERSION,
   });
-  const client = new SnapixClient({ baseUrl, apiKey, bucketKey, logLevel });
+  const client = new SnapixClientServer({ baseUrl, apiKey, bucketKey, logLevel });
 
   // Register tools
   registerConvertTool(server, client);

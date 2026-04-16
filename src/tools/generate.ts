@@ -1,7 +1,7 @@
 import { type McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 
-import { type GenerateImageParams, type SnapixClient } from "@metalevel/snapix-sdk-core";
+import { type GenerateImageParams, type SnapixClientServer } from "@metalevel/snapix-sdk-core";
 import { handleToolError } from "../errors.js";
 import { type TransportType } from "../types.js";
 
@@ -75,7 +75,7 @@ const descriptions: Record<TransportType, string> = {
 
 export function registerGenerateImageTool(
   server: McpServer,
-  client: SnapixClient,
+  client: SnapixClientServer,
   transport: TransportType = "stdio"
 ): void {
   server.registerTool(

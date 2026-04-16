@@ -1,8 +1,8 @@
 import { type McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
 
-import { type SnapixClient } from "@metalevel/snapix-sdk-core";
+import { type SnapixClientServer } from "@metalevel/snapix-sdk-core";
 
-export function registerGalleryResources(server: McpServer, client: SnapixClient): void {
+export function registerGalleryResources(server: McpServer, client: SnapixClientServer): void {
   server.registerResource(
     "gallery-list",
     "snapix://galleries",

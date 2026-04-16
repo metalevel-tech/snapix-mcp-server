@@ -1,9 +1,9 @@
 import { type McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
-import { type SnapixClient } from "@metalevel/snapix-sdk-core";
+import { type SnapixClientServer } from "@metalevel/snapix-sdk-core";
 import { handleToolError } from "../errors.js";
 
-export function registerListGalleriesTool(server: McpServer, client: SnapixClient): void {
+export function registerListGalleriesTool(server: McpServer, client: SnapixClientServer): void {
   server.registerTool(
     "snapix_list_galleries",
     {

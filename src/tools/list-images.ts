@@ -1,10 +1,10 @@
 import { type McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 
-import { type SnapixClient } from "@metalevel/snapix-sdk-core";
+import { type SnapixClientServer } from "@metalevel/snapix-sdk-core";
 import { handleToolError } from "../errors.js";
 
-export function registerListImagesTool(server: McpServer, client: SnapixClient): void {
+export function registerListImagesTool(server: McpServer, client: SnapixClientServer): void {
   server.registerTool(
     "snapix_list_images",
     {
