@@ -42,7 +42,7 @@ export function createSnapixMcpServer({
   registerGenerateImageTool(server, client, transport);
   registerListImagesTool(server, client);
   registerGetImageTool(server, client);
-  registerUpdateImageTool(server, client);
+  registerUpdateImageTool(server, client, transport);
   registerDeleteImageTool(server, client);
   registerCreateGalleryTool(server, client);
   registerListGalleriesTool(server, client);
@@ -64,6 +64,7 @@ export function createSnapixMcpServer({
 /**
  * Creates a stateless request handler for use in web frameworks (Next.js, Hono, etc.).
  * Each incoming request creates a fresh server + transport - no session state is maintained.
+ * Used in SnapiX's API https://www.snapix.com/api/mcp
  */
 export async function handleStatelessRequest(
   request: Request,
