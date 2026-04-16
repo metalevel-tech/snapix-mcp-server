@@ -17,7 +17,7 @@ export function registerGetImageTool(server: McpServer, client: SnapixClientServ
     },
     async (params) => {
       try {
-        const result = await client.getImage(params.imageId);
+        const result = await client.getImage({ imageId: params.imageId });
 
         return {
           content: [{ type: "text" as const, text: JSON.stringify(result, null, 2) }],

@@ -17,7 +17,7 @@ export function registerGetGalleryTool(server: McpServer, client: SnapixClientSe
     },
     async (params) => {
       try {
-        const result = await client.getGallery(params.galleryId);
+        const result = await client.getGallery({ galleryId: params.galleryId });
 
         return {
           content: [{ type: "text" as const, text: JSON.stringify(result, null, 2) }],

@@ -19,7 +19,8 @@ export function registerUpdateGalleryTool(server: McpServer, client: SnapixClien
     },
     async (params) => {
       try {
-        const result = await client.updateGallery(params.galleryId, {
+        const result = await client.updateGallery({
+          galleryId: params.galleryId,
           name: params.name,
           isPublic: params.isPublic,
         });

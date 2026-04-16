@@ -35,7 +35,7 @@ export function registerGalleryResources(server: McpServer, client: SnapixClient
     },
     async (uri, variables) => {
       const galleryId = String(variables.galleryId);
-      const data = await client.getGallery(galleryId);
+      const data = await client.getGallery({ galleryId });
 
       return {
         contents: [

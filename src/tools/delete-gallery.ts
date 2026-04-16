@@ -23,7 +23,10 @@ export function registerDeleteGalleryTool(server: McpServer, client: SnapixClien
     },
     async (params) => {
       try {
-        const result = await client.deleteGallery(params.galleryId, params.deleteImages);
+        const result = await client.deleteGallery({
+          galleryId: params.galleryId,
+          deleteImages: params.deleteImages,
+        });
 
         return {
           content: [{ type: "text" as const, text: JSON.stringify(result, null, 2) }],

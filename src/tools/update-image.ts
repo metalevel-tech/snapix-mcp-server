@@ -73,12 +73,9 @@ export function registerUpdateImageTool(
       description: descriptions[transport],
       inputSchema: transport === "stdio" ? stdioSchema : httpSchema,
     },
-    async (params: Record<string, unknown>) => {
+    async (params: UpdateImageParams) => {
       try {
-        const { imageId, ...updateParams } = params as unknown as {
-          imageId: string;
-        } & UpdateImageParams;
-        const result = await client.updateImage(imageId, updateParams);
+        const result = await client.updateImage(params);
 
         return {
           content: [{ type: "text" as const, text: JSON.stringify(result, null, 2) }],

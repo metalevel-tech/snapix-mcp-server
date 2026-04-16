@@ -10,18 +10,18 @@ export function registerGetDocsTool(server: McpServer, client: SnapixClientServe
     {
       title: "Fetch SnapiX documentation",
       description:
-        "Fetch SnapiX developer documentation as Markdown. Available sections: 'sdk' = TypeScript SDK integration guide, 'api' = REST API reference, 'mcp' = MCP server setup guide. 'about' = about the Snapix application. Only these four slugs are supported.",
+        "Fetch SnapiX developer documentation as Markdown. Available sections: 'sdk' = TypeScript SDK integration guide, 'api' = REST API reference, 'mcp' = MCP server setup guide. 'about' = about the Snapix application. Supported docType values: sdk, api, mcp, about.",
       inputSchema: {
-        slug: z
+        docType: z
           .enum(["sdk", "api", "mcp", "about"])
           .describe(
             "Documentation section to fetch. 'sdk' = TypeScript SDK guide, 'api' = REST API reference, 'mcp' = MCP server setup guide, 'about' = about the Snapix application."
           ),
       },
     },
-    async ({ slug }) => {
+    async ({ docType }) => {
       try {
-        const markdown = await client.getDocs(slug);
+        const markdown = await client.getDocs({ docType });
 
         return {
           content: [

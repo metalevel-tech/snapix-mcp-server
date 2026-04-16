@@ -34,7 +34,7 @@ export function registerImageResources(server: McpServer, client: SnapixClientSe
     },
     async (uri, variables) => {
       const imageId = String(variables.imageId);
-      const data = await client.getImage(imageId);
+      const data = await client.getImage({ imageId });
 
       return {
         contents: [

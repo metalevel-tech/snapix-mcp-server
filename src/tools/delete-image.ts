@@ -17,7 +17,7 @@ export function registerDeleteImageTool(server: McpServer, client: SnapixClientS
     },
     async (params) => {
       try {
-        const result = await client.deleteImage(params.imageId);
+        const result = await client.deleteImage({ imageId: params.imageId });
 
         return {
           content: [{ type: "text" as const, text: JSON.stringify(result, null, 2) }],
