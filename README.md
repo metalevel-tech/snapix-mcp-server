@@ -24,7 +24,7 @@ Add to `.vscode/mcp.json`:
     {
       "id": "SNAPIX_BUCKET_KEY",
       "type": "promptString",
-      "description": "Default bucket key for SnapiX uploads and generates (optional)",
+      "description": "Custom bucket key, if you've setup one (optional)",
       "password": false
     }
   ],
