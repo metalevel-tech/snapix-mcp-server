@@ -17,6 +17,20 @@ Install the package with the appropriate command:
 - yarn: \`yarn add @metalevel/snapix-sdk-core\`
 - npm: \`npm install @metalevel/snapix-sdk-core\`
 
+### Subpath imports — use the entry point that matches the runtime
+
+The package ships three dedicated entry points to avoid bundler errors caused by Node.js-only modules (\`node:fs/promises\`) being pulled into browser bundles:
+
+| Import path | Client class | Use in |
+| --- | --- | --- |
+| \`@metalevel/snapix-sdk-core\` | \`SnapixClientServer\` | Node.js server, Next.js server actions, API routes, MCP server |
+| \`@metalevel/snapix-sdk-core/browser\` | \`SnapixClientBrowser\` | Browser, Next.js client components (\`"use client"\`), edge runtimes |
+| \`@metalevel/snapix-sdk-core/basic\` | \`SnapixClientBasic\` | Custom subclasses only |
+
+All entry points export \`SnapixApiError\`, \`SnapixConfigError\`, and the TypeScript types relevant to that client.
+
+Refer to the **Package Exports** section in the SDK documentation (fetched in Step 1) for the full reference.
+
 ## Step 3 — Configure environment variables
 
 Determine the correct \`.env\` file by checking in this priority order:
@@ -29,10 +43,17 @@ Leave values blank so the developer can fill them in:
 
 \`\`\`
 # Snapix SDK Core — https://www.snapix.space/docs/sdk
+# Server-side (Node.js, server actions, API routes)
 SNAPIX_API_KEY=
 SNAPIX_BASE_URL=
 SNAPIX_BUCKET_KEY=
 SNAPIX_LOG_LEVEL=
+
+# Browser / client components (values are exposed in the browser bundle — use a read-only key)
+NEXT_PUBLIC_SNAPIX_API_KEY=
+NEXT_PUBLIC_SNAPIX_BASE_URL=
+NEXT_PUBLIC_SNAPIX_BUCKET_KEY=
+NEXT_PUBLIC_SNAPIX_LOG_LEVEL=
 \`\`\`
 
 ## Step 4 — Confirm
