@@ -1,11 +1,15 @@
 {
   "name": "@metalevel/snapix-mcp-server",
-  "version": "0.5.1",
+  "version": "1.0.0",
   "mcpBaseUrl": "https://www.snapix.space",
   "description": "MCP server for SnapiX - image optimization, conversion, generation, and gallery management via the Model Context Protocol",
   "type": "module",
   "license": "MIT",
-  "author": "pa4080",
+  "author": {
+    "name": "Spas Z. Spasov (pa4080)",
+    "email": "spas.z.spasov@gmail.com",
+    "url": "https://spasov.me"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/metalevel-tech/snapix-mcp-server"
