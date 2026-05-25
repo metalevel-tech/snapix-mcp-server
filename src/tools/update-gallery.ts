@@ -11,6 +11,12 @@ export function registerUpdateGalleryTool(server: McpServer, client: SnapixClien
       title: "Update a gallery",
       description:
         "Update an existing gallery's name or visibility. Free — does not consume App credits.",
+      annotations: {
+        readOnlyHint: false,
+        destructiveHint: true,
+        idempotentHint: true,
+        openWorldHint: false,
+      },
       inputSchema: z.object({
         galleryId: z.uuid().describe("The UUID of the gallery to update"),
         name: z.string().min(1).max(256).optional().describe("New name for the gallery"),

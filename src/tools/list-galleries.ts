@@ -10,6 +10,11 @@ export function registerListGalleriesTool(server: McpServer, client: SnapixClien
       title: "List galleries",
       description:
         "List all galleries for the authenticated user. Returns gallery names, IDs, visibility status, and image counts. Free — does not consume App credits.",
+      annotations: {
+        readOnlyHint: true,
+        idempotentHint: true,
+        openWorldHint: false,
+      },
     },
     async () => {
       try {

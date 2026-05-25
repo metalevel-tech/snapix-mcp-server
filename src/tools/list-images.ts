@@ -11,6 +11,11 @@ export function registerListImagesTool(server: McpServer, client: SnapixClientSe
       title: "List images",
       description:
         "List images in the user's SnapiX account with pagination. Returns image metadata, CDN URLs, and account statistics. Free — does not consume App credits.",
+      annotations: {
+        readOnlyHint: true,
+        idempotentHint: true,
+        openWorldHint: false,
+      },
       inputSchema: z.object({
         page: z.number().int().positive().optional().describe("Page number (default: 1)"),
         limit: z

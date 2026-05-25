@@ -11,6 +11,11 @@ export function registerGetDocsTool(server: McpServer, client: SnapixClientServe
       title: "Fetch SnapiX documentation",
       description:
         "Fetch SnapiX developer documentation as Markdown. Available sections: 'sdk' = TypeScript SDK integration guide, 'api' = REST API reference, 'mcp' = MCP server setup guide. 'about' = about the Snapix application. Supported docType values: sdk, api, mcp, about.",
+      annotations: {
+        readOnlyHint: true,
+        idempotentHint: true,
+        openWorldHint: false,
+      },
       inputSchema: {
         docType: z
           .enum(["sdk", "api", "mcp", "about"])

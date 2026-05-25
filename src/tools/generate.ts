@@ -83,6 +83,12 @@ export function registerGenerateImageTool(
     {
       title: "Generate an image using AI (Gemini API)",
       description: descriptions[transport],
+      annotations: {
+        readOnlyHint: false,
+        destructiveHint: false,
+        idempotentHint: false,
+        openWorldHint: true,
+      },
       inputSchema: transport === "stdio" ? stdioSchema : httpSchema,
     },
     async (params: Record<string, unknown>) => {

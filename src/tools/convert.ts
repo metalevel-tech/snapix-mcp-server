@@ -9,6 +9,11 @@ export function registerConvertTool(server: McpServer, _client: SnapixClientServ
       title: "Image format conversion guidance",
       description:
         "The SnapiX convert API streams binary data without storing it, which is not useful in an MCP/LLM context. This tool explains how to achieve image conversion using the upload tool instead.",
+      annotations: {
+        readOnlyHint: true,
+        idempotentHint: true,
+        openWorldHint: false,
+      },
     },
     async () => {
       return {

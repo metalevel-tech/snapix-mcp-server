@@ -86,22 +86,24 @@ The remote endpoint is stateless - no session persistence between requests. It d
 
 ## Available Tools
 
-| Tool | Description | Credits |
-| --- | --- | --- |
-| `snapix_get_docs` | Fetch SDK, API, MCP, or About documentation | Free |
-| `snapix_convert_image` | Guidance tool - explains how to convert images using the upload tool | Free |
-| `snapix_upload_image` | Upload an image from URL or local file, optionally convert format and resize | 1+ |
-| `snapix_generate_image` | Generate an image from a text prompt, optionally guided by a template image (Gemini AI)* | 40+ |
-| `snapix_list_images` | List images with pagination and filtering | Free |
-| `snapix_get_image` | Get full details for a single image | Free |
-| `snapix_update_image` | Update image metadata, gallery assignments, or replace/re-convert the image | Free† |
-| `snapix_delete_image` | Permanently delete an image | Free |
-| `snapix_create_gallery` | Create a new gallery, optionally with existing images | Free |
-| `snapix_list_galleries` | List all galleries | Free |
-| `snapix_get_gallery` | Get gallery details with all images | Free |
-| `snapix_get_ungrouped_images` | Get all images not assigned to any gallery | Free |
-| `snapix_update_gallery` | Update gallery name or visibility | Free |
-| `snapix_delete_gallery` | Delete a gallery, optionally with all its images | Free |
+Each tool carries [MCP tool annotations](https://modelcontextprotocol.io/docs/concepts/tools#tool-annotations) that well-behaved clients (VS Code Copilot, Claude Desktop, etc.) use to show appropriate confirmation prompts. Because SnapiX retains **no history and no soft-delete**, every update or delete is irreversible — `destructiveHint` is set to `true` on all mutating tools accordingly.
+
+| Tool | Description | Credits | Read-only | Destructive | Idempotent | Open-world |
+| --- | --- | --- | --- | --- | --- | --- |
+| `snapix_get_docs` | Fetch SDK, API, MCP, or About documentation | Free | ✓ | n/a | ✓ | – |
+| `snapix_convert_image` | Guidance tool - explains how to convert images using the upload tool | Free | ✓ | n/a | ✓ | – |
+| `snapix_upload_image` | Upload an image from URL or local file, optionally convert format and resize | 1+ | – | – | – | ✓ |
+| `snapix_generate_image` | Generate an image from a text prompt, optionally guided by a template image (Gemini AI)* | 40+ | – | – | – | ✓ |
+| `snapix_list_images` | List images with pagination and filtering | Free | ✓ | n/a | ✓ | – |
+| `snapix_get_image` | Get full details for a single image | Free | ✓ | n/a | ✓ | – |
+| `snapix_update_image` | Update image metadata, gallery assignments, or replace/re-convert the image | Free† | – | ✓ | – | ✓ |
+| `snapix_delete_image` | Permanently delete an image | Free | – | ✓ | ✓ | – |
+| `snapix_create_gallery` | Create a new gallery, optionally with existing images | Free | – | – | – | – |
+| `snapix_list_galleries` | List all galleries | Free | ✓ | n/a | ✓ | – |
+| `snapix_get_gallery` | Get gallery details with all images | Free | ✓ | n/a | ✓ | – |
+| `snapix_get_ungrouped_images` | Get all images not assigned to any gallery | Free | ✓ | n/a | ✓ | – |
+| `snapix_update_gallery` | Update gallery name or visibility | Free | – | ✓ | ✓ | – |
+| `snapix_delete_gallery` | Delete a gallery, optionally with all its images | Free | – | ✓ | ✓ | – |
 
 * `snapix_generate_image` requires a paid subscription. Accepts a text prompt plus an optional template image (URL, local file path, or base64) and generates an image using Gemini AI.
 

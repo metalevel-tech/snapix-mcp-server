@@ -14,6 +14,11 @@ export function registerGetUngroupedImagesTool(
       title: "Get ungrouped images",
       description:
         "Get all images that are not assigned to any gallery. Free — does not consume App credits.",
+      annotations: {
+        readOnlyHint: true,
+        idempotentHint: true,
+        openWorldHint: false,
+      },
       inputSchema: z.object({
         bucketKey: z
           .string()

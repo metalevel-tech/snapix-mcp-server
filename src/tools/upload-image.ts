@@ -94,6 +94,12 @@ export function registerUploadImageTool(
     {
       title: "Upload an image",
       description: descriptions[transport],
+      annotations: {
+        readOnlyHint: false,
+        destructiveHint: false,
+        idempotentHint: false,
+        openWorldHint: true,
+      },
       inputSchema: transport === "stdio" ? stdioSchema : httpSchema,
     },
     async (params: Record<string, unknown>) => {

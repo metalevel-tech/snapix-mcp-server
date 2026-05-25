@@ -11,6 +11,12 @@ export function registerDeleteGalleryTool(server: McpServer, client: SnapixClien
       title: "Delete a gallery",
       description:
         "Permanently delete a gallery. Optionally delete all images in the gallery as well. This action cannot be undone. Free — does not consume App credits.",
+      annotations: {
+        readOnlyHint: false,
+        destructiveHint: true,
+        idempotentHint: true,
+        openWorldHint: false,
+      },
       inputSchema: z.object({
         galleryId: z.uuid().describe("The UUID of the gallery to delete"),
         deleteImages: z

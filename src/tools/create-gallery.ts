@@ -11,6 +11,12 @@ export function registerCreateGalleryTool(server: McpServer, client: SnapixClien
       title: "Create a gallery",
       description:
         "Create a new gallery to organize images. Optionally assign existing images by ID. Galleries can be public (shareable) or private. Free — does not consume App credits.",
+      annotations: {
+        readOnlyHint: false,
+        destructiveHint: false,
+        idempotentHint: false,
+        openWorldHint: false,
+      },
       inputSchema: z.object({
         name: z.string().min(1).max(256).describe("Name of the gallery"),
         isPublic: z

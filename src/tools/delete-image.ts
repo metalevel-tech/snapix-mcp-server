@@ -11,6 +11,12 @@ export function registerDeleteImageTool(server: McpServer, client: SnapixClientS
       title: "Delete an image",
       description:
         "Permanently delete an image and all its variants from SnapiX storage. This action cannot be undone. Free — does not consume App credits.",
+      annotations: {
+        readOnlyHint: false,
+        destructiveHint: true,
+        idempotentHint: true,
+        openWorldHint: false,
+      },
       inputSchema: z.object({
         imageId: z.uuid().describe("The UUID of the image to delete"),
       }),

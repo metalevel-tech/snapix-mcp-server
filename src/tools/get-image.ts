@@ -11,6 +11,11 @@ export function registerGetImageTool(server: McpServer, client: SnapixClientServ
       title: "Get an image",
       description:
         "Get details for a single image by ID. Returns full metadata, CDN URLs for all variants, and dimensions. Free — does not consume App credits.",
+      annotations: {
+        readOnlyHint: true,
+        idempotentHint: true,
+        openWorldHint: false,
+      },
       inputSchema: z.object({
         imageId: z.uuid().describe("The UUID of the image to retrieve"),
       }),

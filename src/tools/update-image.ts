@@ -71,6 +71,12 @@ export function registerUpdateImageTool(
     {
       title: "Update an image",
       description: descriptions[transport],
+      annotations: {
+        readOnlyHint: false,
+        destructiveHint: true,
+        idempotentHint: false,
+        openWorldHint: true,
+      },
       inputSchema: transport === "stdio" ? stdioSchema : httpSchema,
     },
     async (params: UpdateImageParams) => {

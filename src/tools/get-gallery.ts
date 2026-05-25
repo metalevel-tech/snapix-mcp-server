@@ -11,6 +11,11 @@ export function registerGetGalleryTool(server: McpServer, client: SnapixClientSe
       title: "Get a gallery",
       description:
         "Get details for a single gallery by ID, including all images in the gallery with their CDN URLs. Free — does not consume App credits.",
+      annotations: {
+        readOnlyHint: true,
+        idempotentHint: true,
+        openWorldHint: false,
+      },
       inputSchema: z.object({
         galleryId: z.uuid().describe("The UUID of the gallery to retrieve"),
       }),
